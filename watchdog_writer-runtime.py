@@ -8,7 +8,6 @@ import datetime
 import sys #enable import of mymodules
 sys.path.insert(1, '/home/francois/gpt-2/') # insert at 1, 0 is the script path (or '' in REPL)
 import mymodules #from /src folder
-from playsound import playsound
 
 DIR_TO_WATCH = "/home/francois/gpt-2/writer/input_auto1"
 

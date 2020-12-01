@@ -1,12 +1,9 @@
-#Watchdog
 import time
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 import shutil
 import linecache
 import gc
-import re
-import fileinput
 import datetime
 import sys #enable import of mymodules
 sys.path.insert(1, '/home/francois/gpt-2/') # insert at 1, 0 is the script path (or '' in REPL)
@@ -48,61 +45,6 @@ class Handler(FileSystemEventHandler):
             print("Received created event - %s." % event.src_path)
             filepath="/home/francois/gpt-2/writer/input_auto1/"
             filename = event.src_path.strip(filepath)
-            
-            def shorten_line_to_lastpoint(inputtext):
-                questionmark_position = inputtext.rfind("?")
-                finaldot_position = inputtext.rfind(".")
-                if questionmark_position != -1:
-                    outputtext = inputtext[0:questionmark_position+1]
-                elif finaldot_position != -1:
-                    outputtext = inputtext[0:finaldot_position+1]
-                return outputtext
-
-            def shorten_line_to_firstpoint(inputtext):
-                questionmark_position = inputtext.rfind("?")
-                dot_position = inputtext.rfind(".")
-                exclam_position = inputtext.rfind("!")
-                comma_position = inputtext.rfind(",")
-                if questionmark_position != -1:
-                    outputtext = inputtext.split("?")
-                    outputtext = outputtext[0]+"?"
-                elif dot_position != -1:
-                    outputtext = inputtext.split(".")
-                    outputtext = outputtext[0]+"."
-                elif exclam_position != -1:
-                    outputtext = inputtext.split("!")
-                    outputtext = outputtext[0]+"!"
-                elif comma_position != -1:
-                    outputtext = inputtext.split(",")
-                    outputtext = outputtext[0]+","
-                else:
-                    outputtext = inputtext[:150]+"..."
-                if len(outputtext) > 160:
-                    outputtext = inputtext[:157]+"..."
-                return outputtext
-
-            def shorten_lastline_to_lastsentence(inputtext):
-                dot_position = inputtext.rfind(".")
-                dot_position = inputtext.rfind(".",0,dot_position)
-                #print(dot_position)
-                questionmark_position = inputtext.rfind("?")
-                questionmark_position = inputtext.rfind("?",0,questionmark_position)
-                #print(questionmark_position)
-                exclam_position = inputtext.rfind("!")
-                exclam_position = inputtext.rfind("!",0,exclam_position)
-                #print(exclam_position)
-                if dot_position != -1:
-                    outputtext = inputtext.split(".",dot_position)
-                    outputtext = outputtext[-1]
-                elif questionmark_position != -1:
-                    outputtext = inputtext.split("?",questionmark_position)
-                    outputtext = outputtext[-1]
-                elif exclam_position != -1:
-                    outputtext = inputtext.split("!",exclam_position)
-                    outputtext = outputtext[-1]
-                else:
-                    outputtext = inputtext
-                return outputtext
             
             def file_number_of_lines(fname):
                 with open(fname) as f:
@@ -160,7 +102,7 @@ class Handler(FileSystemEventHandler):
             linetotal = file_number_of_lines(event.src_path)
             print("The file has " + str(linetotal) + " lines.")
             number_of_gpt_run = number_of_gpt_run(linetotal)
-            print("Number of runs is "+number_of_gpt_run)
+            print("The planned number of runs is "+number_of_gpt_run)
             number_of_run = (linetotal-1)/(3)
             summary = linecache.getline(event.src_path,1) #summary has to be provided as the single first line of the input file
             bookcontent = summary
@@ -196,7 +138,6 @@ class Handler(FileSystemEventHandler):
             #Number of collected and deallocated objects
             #print("Unreachable objects: "+str(unreachable_objects))
             print("Processed successfully "+filename)
-            playsound("/home/francois/Music/python_bowlb.wav")
 
         elif event.event_type == 'modified':
             # Taken any action here when a file is modified.

@@ -15,4 +15,4 @@ Participation to NaNoGenMo 2020 challenge.
 Replace "francois" by your linux user or adjust paths to your preference.
 
 ## Model training
-Using the Max Wolf colab notebook at https://colab.research.google.com/drive/1VLG8e7YSEwypxU-noRNhsv5dW4NfTGce.
+I used the Max Wolf colab notebook at https://colab.research.google.com/drive/1VLG8e7YSEwypxU-noRNhsv5dW4NfTGce.

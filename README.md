@@ -1,5 +1,5 @@
-## text-generation-01
 Participation to NaNoGenMo 2020 challenge.
+See https://github.com/NaNoGenMo/2020/issues/17
 
 ## Installation of the writer
 #### gpt-2 prerequisites

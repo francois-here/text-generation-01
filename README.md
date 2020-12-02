@@ -1,7 +1,7 @@
-# text-generation-01
+## text-generation-01
 Participation to NaNoGenMo 2020 challenge.
 
-# Installation of the writer
+## Installation of the writer
 #### gpt-2 prerequisites
 #### Build the folder structure and replace "francois" by your linux user.
 
@@ -13,3 +13,6 @@ Participation to NaNoGenMo 2020 challenge.
 
 #### In watchdog_writer-runtime.py
 Replace "francois" by your linux user or adjust paths to your preference.
+
+## Model training
+Using the Max Wolf colab notebook at https://colab.research.google.com/drive/1VLG8e7YSEwypxU-noRNhsv5dW4NfTGce.
